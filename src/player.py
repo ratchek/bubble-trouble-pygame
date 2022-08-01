@@ -1,5 +1,7 @@
 import settings
 import pygame
+from harpoon import Harpoon
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -8,6 +10,11 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midbottom =  (settings.WIDTH/2, settings.HEIGHT)
         self.speedx = 0
+        self.max_harpoons = 1
+    def shoot(self):
+        harpoon = Harpoon(self.rect.centerx, self.rect.top)
+        return harpoon
+
     def update(self):
         self.speedx = 0
         keystate = pygame.key.get_pressed()
@@ -20,3 +27,4 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > settings.WIDTH:
             self.rect.right = settings.WIDTH
+
