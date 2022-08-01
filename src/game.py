@@ -2,7 +2,7 @@
 import pygame
 import random
 import settings
-
+from player import Player
 
 # initialize pygame and create window
 pygame.init()
@@ -12,6 +12,8 @@ pygame.display.set_caption(settings.TITLE)
 clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
 
+player = Player()
+all_sprites.add(player)
 
 # Game loop
 running = True
