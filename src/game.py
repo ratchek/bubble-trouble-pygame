@@ -1,6 +1,6 @@
 # Pygame template - skeleton for a new pygame project
 import pygame
-import settings
+from settings import *
 from player import Player
 from bubble import Bubble
 
@@ -9,8 +9,8 @@ class Game:
         # initialize game window, mixer, clock, etc
         pygame.init()
         pygame.mixer.init()
-        self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
-        pygame.display.set_caption(settings.TITLE)
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption(TITLE)
         self.clock = pygame.time.Clock()
         self.running = True 
 
@@ -23,16 +23,16 @@ class Game:
         # reposition player
         self.harpoons = pygame.sprite.Group()
         self.bubbles = pygame.sprite.Group()
-        bubble0 = Bubble(settings.WIDTH/5, 60, 0, settings.BLUE, settings.BUBBLE_HORIZONTAL_SPEED, 0)
+        bubble0 = Bubble(WIDTH/5, 60, 0, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
         self.all_sprites.add(bubble0)
         self.bubbles.add(bubble0)
-        bubble1 = Bubble(2*settings.WIDTH/5, 60, 1, settings.BLUE, settings.BUBBLE_HORIZONTAL_SPEED, 0)
+        bubble1 = Bubble(2*WIDTH/5, 60, 1, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
         self.all_sprites.add(bubble1)
         self.bubbles.add(bubble1)
-        bubble2 = Bubble(3*settings.WIDTH/5, 60, 2, settings.BLUE, settings.BUBBLE_HORIZONTAL_SPEED, 0)
+        bubble2 = Bubble(3*WIDTH/5, 60, 2, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
         self.all_sprites.add(bubble2)
         self.bubbles.add(bubble2)
-        bubble3 = Bubble(4*settings.WIDTH/5, 60, 3, settings.BLUE, settings.BUBBLE_HORIZONTAL_SPEED, 0)
+        bubble3 = Bubble(4*WIDTH/5, 60, 3, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
         self.all_sprites.add(bubble3)
         self.bubbles.add(bubble3)
         
@@ -42,7 +42,7 @@ class Game:
         # game loop
         self.playing = True
         while self.playing:
-            self.clock.tick(settings.FPS)
+            self.clock.tick(FPS)
             self.events()
             self.draw()
             self.update()
@@ -66,7 +66,7 @@ class Game:
 
     def draw(self):
         # draw stuff
-        self.screen.fill(settings.BLACK)
+        self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
         # after drawing everything, flip the display
         pygame.display.flip()
@@ -91,8 +91,8 @@ class Game:
         if hits:
             for bubble in hits:
                 if bubble.level > 0:
-                    bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x, settings.BUBBLE_HARPOON_SPEED_BOOST)
-                    bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x * -1, settings.BUBBLE_HARPOON_SPEED_BOOST)
+                    bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x, BUBBLE_HARPOON_SPEED_BOOST)
+                    bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x * -1, BUBBLE_HARPOON_SPEED_BOOST)
                     self.all_sprites.add(bubble_one, bubble_two)
                     self.bubbles.add(bubble_one, bubble_two)
 
