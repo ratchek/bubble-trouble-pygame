@@ -1,3 +1,5 @@
+import pygame
+
 WIDTH = 720
 HEIGHT = 480
 FPS = 60
@@ -25,4 +27,13 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
+BG_COLOR = BLACK
 
+
+FONT_NAME = "arial" 
+# If font doesn't exist on system, use closest matching font that exists
+FONT = pygame.font.match_font(FONT_NAME)
+# How long to wait between levels. In seconds
+LEVEL_SCREEN_PAUSE = 1
+# How long to wait between levels. In seconds
+AFTER_DEATH_PAUSE = 1

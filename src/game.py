@@ -3,6 +3,8 @@ import pygame
 from settings import *
 from player import Player
 from bubble import Bubble
+from levels import LEVELS
+from screen import *
 
 class Game:
     def __init__(self):
@@ -23,23 +25,25 @@ class Game:
         # reposition player
         self.harpoons = pygame.sprite.Group()
         self.bubbles = pygame.sprite.Group()
-        bubble0 = Bubble(WIDTH/5, 60, 0, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
-        self.all_sprites.add(bubble0)
-        self.bubbles.add(bubble0)
-        bubble1 = Bubble(2*WIDTH/5, 60, 1, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
-        self.all_sprites.add(bubble1)
-        self.bubbles.add(bubble1)
-        bubble2 = Bubble(3*WIDTH/5, 60, 2, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
-        self.all_sprites.add(bubble2)
-        self.bubbles.add(bubble2)
-        bubble3 = Bubble(4*WIDTH/5, 60, 3, BLUE, BUBBLE_HORIZONTAL_SPEED, 0)
-        self.all_sprites.add(bubble3)
-        self.bubbles.add(bubble3)
-        
+        self.load_level(0)
+
         self.run()
 
+    def load_level(self, level):
+        for b in LEVELS[level]["bubbles"]:
+            print(b)
+            bubble = Bubble(**b)
+            self.bubbles.add(bubble)
+            self.all_sprites.add(bubble)
+        player_x_coords  = LEVELS[level]["player"]["x"]
+        player_y_coords  = LEVELS[level]["player"]["y"]
+        self.player.rect.midbottom = (player_x_coords, player_y_coords)
+        show_level_screen(game, level)
+ 
     def run(self):
         # game loop
+        # self.playing controls the current game (until you die or quit).
+        # self.running controls the game window (until you hit ESCAPE or click "x")
         self.playing = True
         while self.playing:
             self.clock.tick(FPS)
@@ -66,37 +70,43 @@ class Game:
 
     def draw(self):
         # draw stuff
-        self.screen.fill(BLACK)
+        self.screen.fill(BG_COLOR)
         self.all_sprites.draw(self.screen)
         # after drawing everything, flip the display
         pygame.display.flip()
 
     def update(self):
         # all the updates
-        self.all_sprites.update()
         hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
         if hits:
-            while self.running:
-                # Pause screen after hit 
-                for event in pygame.event.get():
-                    # check for closing window
-                    if event.type == pygame.QUIT:
-                        self.playing = False
-                        self.running = False
-                    elif event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_ESCAPE:
-                            self.playing = False
-                            self.running = False
+            self.game_over()
         hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, True, True)
         if hits:
             for bubble in hits:
-                if bubble.level > 0:
-                    bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x, BUBBLE_HARPOON_SPEED_BOOST)
-                    bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x * -1, BUBBLE_HARPOON_SPEED_BOOST)
+                if bubble.stage > 0:
+                    bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x, BUBBLE_HARPOON_SPEED_BOOST)
+                    bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x * -1, BUBBLE_HARPOON_SPEED_BOOST)
                     self.all_sprites.add(bubble_one, bubble_two)
                     self.bubbles.add(bubble_one, bubble_two)
+        # I want update to happen at the end so that the "hit" is drawn before the game freezes
+        # Otherwise it'll look like you died before you actually got hit.
+        self.all_sprites.update()
+    
+    def game_over(self):
+        self.died_animation()
+        # cleanup
+        for sprite in self.all_sprites:
+            sprite.kill()
+        self.playing = False
+
+    def died_animation(self):
+        pygame.time.wait(AFTER_DEATH_PAUSE * 1000)
+        show_go_screen(game)
+    
+
 
 game = Game()
+show_start_screen(game)
 while game.running:
     game.new()
 
