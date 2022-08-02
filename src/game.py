@@ -71,8 +71,8 @@ while running:
     if hits:
         for bubble in hits:
             if bubble.level > 0:
-                bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x, bubble.speed_y + settings.BUBBLE_HARPOON_SPEED_BOOST)
-                bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x * -1, bubble.speed_y + settings.BUBBLE_HARPOON_SPEED_BOOST)
+                bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x, settings.BUBBLE_HARPOON_SPEED_BOOST)
+                bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.level - 1, bubble.color, bubble.speed_x * -1, settings.BUBBLE_HARPOON_SPEED_BOOST)
                 all_sprites.add(bubble_one, bubble_two)
                 bubbles.add(bubble_one, bubble_two)
 
