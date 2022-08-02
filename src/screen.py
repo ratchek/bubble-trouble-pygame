@@ -25,7 +25,16 @@ def show_level_screen(game, level):
     game.screen.fill(BG_COLOR)
     draw_text(game, "LEVEL " + str(level + 1), 48, WHITE, WIDTH / 2, HEIGHT / 4)
     pygame.display.flip()
-    pygame.time.wait(LEVEL_SCREEN_PAUSE * 1000)
+    pygame.time.wait(int(LEVEL_SCREEN_PAUSE * 1000))
+
+def show_winner_screen(game):
+    game.screen.fill(BG_COLOR)
+    draw_text(game, "CONGRATULATIONS!" , 48, WHITE, WIDTH / 2, HEIGHT / 4)
+    draw_text(game, "You won!!!" ,  22, WHITE, WIDTH / 2, HEIGHT / 2)
+    draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+    pygame.display.flip()
+    wait_for_key(game)
+    
 
 def wait_for_key(game):
     waiting = True

@@ -3,7 +3,7 @@ import pygame
 from settings import *
 from player import Player
 from bubble import Bubble
-from levels import LEVELS
+from levels import LEVELS, NO_OF_LEVELS
 from screen import *
 
 class Game:
@@ -25,7 +25,8 @@ class Game:
         # reposition player
         self.harpoons = pygame.sprite.Group()
         self.bubbles = pygame.sprite.Group()
-        self.load_level(0)
+        self.current_level = 0
+        self.load_level(self.current_level)
 
         self.run()
 
@@ -77,9 +78,6 @@ class Game:
 
     def update(self):
         # all the updates
-        hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
-        if hits:
-            self.game_over()
         hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, True, True)
         if hits:
             for bubble in hits:
@@ -88,6 +86,19 @@ class Game:
                     bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x * -1, BUBBLE_HARPOON_SPEED_BOOST)
                     self.all_sprites.add(bubble_one, bubble_two)
                     self.bubbles.add(bubble_one, bubble_two)
+        # If you killed all the bubbles
+        if not self.bubbles:
+            pygame.time.wait(int(AFTER_LVL_CLEARED_PAUSE * 1000))
+            self.current_level += 1
+            if self.current_level >= NO_OF_LEVELS:
+                self.winner()
+            else:
+                self.load_level(self.current_level)
+
+        hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
+        if hits:
+            self.game_over()
+
         # I want update to happen at the end so that the "hit" is drawn before the game freezes
         # Otherwise it'll look like you died before you actually got hit.
         self.all_sprites.update()
@@ -100,10 +111,15 @@ class Game:
         self.playing = False
 
     def died_animation(self):
-        pygame.time.wait(AFTER_DEATH_PAUSE * 1000)
+        pygame.time.wait(int(AFTER_DEATH_PAUSE * 1000))
         show_go_screen(game)
     
-
+    def winner(self):
+        show_winner_screen(game)
+        for sprite in self.all_sprites:
+            sprite.kill()
+        self.playing = False
+        
 
 game = Game()
 show_start_screen(game)

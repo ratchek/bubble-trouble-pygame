@@ -5,6 +5,23 @@ LEVELS = [
             "bubbles":[
                         {
                         "x": WIDTH/5, 
+                        "y": 160, 
+                        "stage": 1,
+                        "color": GREEN,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                    ],
+            "player":{ 
+                        "x": 4 * WIDTH /5 ,
+                        "y": HEIGHT,
+                     },
+            },
+
+            {
+            "bubbles":[
+                        {
+                        "x": WIDTH/5, 
                         "y": 60, 
                         "stage": 2,
                         "color": BLUE,
@@ -15,8 +32,8 @@ LEVELS = [
             "player":{ 
                         "x": 4 * WIDTH /5 ,
                         "y": HEIGHT,
-                     }
-            }
+                     },
+            },
         ]
 
 NO_OF_LEVELS = len(LEVELS)

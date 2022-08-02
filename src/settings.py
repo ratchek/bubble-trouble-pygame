@@ -35,5 +35,7 @@ FONT_NAME = "arial"
 FONT = pygame.font.match_font(FONT_NAME)
 # How long to wait between levels. In seconds
 LEVEL_SCREEN_PAUSE = 1
-# How long to wait between levels. In seconds
+# How long to wait after death. In seconds
 AFTER_DEATH_PAUSE = 1
+# How long to wait after level cleared. In seconds
+AFTER_LVL_CLEARED_PAUSE = 0.5
