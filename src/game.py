@@ -34,6 +34,11 @@ class Game:
         self.run()
 
     def load_level(self, level):
+        # Need to turn off the ability to fire harpoons while level screen is showing
+        temp = player.max_harpoons
+`       player.max_harpoons = 0
+        show_level_screen(game, level)
+`       player.max_harpoons = temp
         for b in LEVELS[level]["bubbles"]:
             print(b)
             bubble = Bubble(**b)
@@ -42,7 +47,6 @@ class Game:
         player_x_coords  = LEVELS[level]["player"]["x"]
         player_y_coords  = LEVELS[level]["player"]["y"]
         self.player.rect.midbottom = (player_x_coords, player_y_coords)
-        show_level_screen(game, level)
  
     def run(self):
         # game loop
