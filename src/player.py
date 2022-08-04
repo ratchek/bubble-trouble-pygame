@@ -11,6 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.midbottom =  (WIDTH/2, HEIGHT)
         self.speedx = 0
         self.max_harpoons = 1
+        self.lives = NO_OF_LIVES_AT_BEGINNING
     def shoot(self):
         harpoon = Harpoon(self.rect.centerx, self.rect.top)
         return harpoon

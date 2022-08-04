@@ -25,8 +25,10 @@ class Game:
         # reposition player
         self.harpoons = pygame.sprite.Group()
         self.bubbles = pygame.sprite.Group()
+        self.life_icons = pygame.sprite.Group()
         self.current_level = 0
         self.load_level(self.current_level)
+        self.score = 0
 
         self.run()
 
@@ -73,6 +75,7 @@ class Game:
         # draw stuff
         self.screen.fill(BG_COLOR)
         self.all_sprites.draw(self.screen)
+        draw_lives(game)
         # after drawing everything, flip the display
         pygame.display.flip()
 
@@ -81,6 +84,7 @@ class Game:
         hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, True, True)
         if hits:
             for bubble in hits:
+                self.score += 10
                 if bubble.stage > 0:
                     bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x, BUBBLE_HARPOON_SPEED_BOOST)
                     bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x * -1, BUBBLE_HARPOON_SPEED_BOOST)
@@ -88,6 +92,7 @@ class Game:
                     self.bubbles.add(bubble_one, bubble_two)
         # If you killed all the bubbles
         if not self.bubbles:
+            self.score += 100
             pygame.time.wait(int(AFTER_LVL_CLEARED_PAUSE * 1000))
             self.current_level += 1
             if self.current_level >= NO_OF_LEVELS:
@@ -97,7 +102,11 @@ class Game:
 
         hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
         if hits:
-            self.game_over()
+            self.player.lives -= 1
+            if self.player.lives <= 0:
+                self.game_over()
+            else:
+                self.lost_life()
 
         # I want update to happen at the end so that the "hit" is drawn before the game freezes
         # Otherwise it'll look like you died before you actually got hit.
@@ -119,7 +128,12 @@ class Game:
         for sprite in self.all_sprites:
             sprite.kill()
         self.playing = False
-        
+
+    def lost_life(self):
+        pygame.time.wait(int(AFTER_DEATH_PAUSE * 1000))
+        for bubble in self.bubbles:
+            bubble.kill()
+        self.load_level(self.current_level)
 
 game = Game()
 show_start_screen(game)

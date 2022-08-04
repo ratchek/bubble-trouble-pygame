@@ -5,7 +5,7 @@ def show_start_screen(game):
     # game splash/start screen
     game.screen.fill(BG_COLOR)
     draw_text(game, TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
-    draw_text(game, "Arrows to move, Space to fire harpoon", 22, WHITE, WIDTH / 2, HEIGHT / 2)
+    draw_text(game, TITLE_SCREEN_INSTRUCTIONS, 22, WHITE, WIDTH / 2, HEIGHT / 2)
     draw_text(game, "Press a key to play", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
     pygame.display.flip()
     wait_for_key(game)
@@ -16,7 +16,7 @@ def show_go_screen(game):
         return
     game.screen.fill(BG_COLOR)
     draw_text(game, "GAME OVER", 48, WHITE, WIDTH / 2, HEIGHT / 4)
-    draw_text(game, "Score: " + "???" ,  22, WHITE, WIDTH / 2, HEIGHT / 2)
+    draw_text(game, "Score: {}".format(game.score) ,  22, WHITE, WIDTH / 2, HEIGHT / 2)
     draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
     pygame.display.flip()
     wait_for_key(game)
@@ -59,3 +59,13 @@ def draw_text(game, text, size, color, x, y):
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     game.screen.blit(text_surface, text_rect)
+
+def draw_lives(game):
+    for i in range(game.player.lives):
+        life_icon = pygame.Surface((LIFE_ICON_WIDTH, LIFE_ICON_HEIGHT))
+        life_icon.fill(RED)
+        rect = life_icon.get_rect()
+        x = FIRST_LIFE_ICON_X_POSITION + (LIFE_ICON_WIDTH + LIFE_ICON_PADDING) * i
+        y = FIRST_LIFE_ICON_Y_POSITION
+        rect.topleft = (x,y)
+        game.screen.blit(life_icon, rect)
