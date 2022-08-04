@@ -1,4 +1,5 @@
 # Pygame template - skeleton for a new pygame project
+import sys
 import pygame
 from settings import *
 from player import Player
@@ -16,7 +17,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True 
 
-    def new(self):
+    def new(self, level= 0):
         # start new game
         self.all_sprites = pygame.sprite.Group()
         self.player = Player()
@@ -26,7 +27,7 @@ class Game:
         self.harpoons = pygame.sprite.Group()
         self.bubbles = pygame.sprite.Group()
         self.life_icons = pygame.sprite.Group()
-        self.current_level = 0
+        self.current_level = level
         self.load_level(self.current_level)
         self.score = 0
 
@@ -136,9 +137,13 @@ class Game:
         self.load_level(self.current_level)
 
 game = Game()
+level = 0
+if len(sys.argv)==2: # first entry in sys.argv is script itself...
+     level = int(sys.argv[1])
+
 show_start_screen(game)
 while game.running:
-    game.new()
+    game.new(level)
 
 pygame.quit()
 
