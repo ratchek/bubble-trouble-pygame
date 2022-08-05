@@ -49,6 +49,9 @@ class Game:
         player_x_coords  = LEVELS[level]["player"]["x"]
         player_y_coords  = LEVELS[level]["player"]["y"]
         self.player.rect.midbottom = (player_x_coords, player_y_coords)
+        self.level_start_time = pygame.time.get_ticks()
+        temp_time = 10
+        self.level_end_time = self.level_start_time + (temp_time * 1000)
  
     def run(self):
         # game loop
@@ -82,6 +85,7 @@ class Game:
         # draw stuff
         self.screen.fill(BG_COLOR)
         self.all_sprites.draw(self.screen)
+        Graphics.draw_console(game)
         Graphics.draw_lives(game)
         # after drawing everything, flip the display
         pygame.display.flip()
@@ -107,8 +111,10 @@ class Game:
             else:
                 self.load_level(self.current_level)
 
+        # did time run out?
+        end_of_time = pygame.time.get_ticks() >= self.level_end_time 
         hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
-        if hits:
+        if hits or end_of_time:
             self.player.lives -= 1
             if self.player.lives <= 0:
                 self.game_over()

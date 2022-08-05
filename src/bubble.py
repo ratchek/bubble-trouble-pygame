@@ -19,7 +19,7 @@ class Bubble (pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
-        if self.rect.bottom >= HEIGHT:
+        if self.rect.bottom >= GAME_FLOOR:
             self.speed_y *= -1
         elif self.speed_y <= BUBBLE_MAX_SPEEDS[self.stage]:
             self.speed_y += self.gravity

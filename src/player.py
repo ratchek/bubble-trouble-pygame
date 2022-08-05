@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
         self.image.fill(RED)
         self.rect = self.image.get_rect()
-        self.rect.midbottom =  (WIDTH/2, HEIGHT)
+        self.rect.midbottom =  (WIDTH/2, GAME_FLOOR)
         self.speedx = 0
         self.max_harpoons = 1
         self.lives = NO_OF_LIVES_AT_BEGINNING

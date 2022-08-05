@@ -6,9 +6,9 @@ class Graphics:
     def show_start_screen(game):
         # game splash/start screen
         game.screen.fill(BG_COLOR)
-        Graphics.draw_text(game, TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
-        Graphics.draw_text(game, TITLE_SCREEN_INSTRUCTIONS, 22, WHITE, WIDTH / 2, HEIGHT / 2)
-        Graphics.draw_text(game, "Press a key to play", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+        Graphics.draw_text(game, TITLE, 48, WHITE, WIDTH / 2, GAME_FLOOR / 4)
+        Graphics.draw_text(game, TITLE_SCREEN_INSTRUCTIONS, 22, WHITE, WIDTH / 2, GAME_FLOOR / 2)
+        Graphics.draw_text(game, "Press a key to play", 22, WHITE, WIDTH / 2, GAME_FLOOR * 3 / 4)
         pygame.display.flip()
         Graphics.wait_for_key(game)
 
@@ -18,25 +18,25 @@ class Graphics:
         if not game.running:
             return
         game.screen.fill(BG_COLOR)
-        Graphics.draw_text(game, "GAME OVER", 48, WHITE, WIDTH / 2, HEIGHT / 4)
-        Graphics.draw_text(game, "Score: {}".format(game.score) ,  22, WHITE, WIDTH / 2, HEIGHT / 2)
-        Graphics.draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+        Graphics.draw_text(game, "GAME OVER", 48, WHITE, WIDTH / 2, GAME_FLOOR / 4)
+        Graphics.draw_text(game, "Score: {}".format(game.score) ,  22, WHITE, WIDTH / 2, GAME_FLOOR / 2)
+        Graphics.draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, GAME_FLOOR * 3 / 4)
         pygame.display.flip()
         Graphics.wait_for_key(game)
 
     @staticmethod
     def show_level_screen(game, level):
         game.screen.fill(BG_COLOR)
-        Graphics.draw_text(game, "LEVEL " + str(level + 1), 48, WHITE, WIDTH / 2, HEIGHT / 4)
+        Graphics.draw_text(game, "LEVEL " + str(level + 1), 48, WHITE, WIDTH / 2, GAME_FLOOR / 4)
         pygame.display.flip()
         pygame.time.wait(int(LEVEL_SCREEN_PAUSE * 1000))
 
     @staticmethod
     def show_winner_screen(game):
         game.screen.fill(BG_COLOR)
-        Graphics.draw_text(game, "CONGRATULATIONS!" , 48, WHITE, WIDTH / 2, HEIGHT / 4)
-        Graphics.draw_text(game, "You won!!!" ,  22, WHITE, WIDTH / 2, HEIGHT / 2)
-        Graphics.draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+        Graphics.draw_text(game, "CONGRATULATIONS!" , 48, WHITE, WIDTH / 2, GAME_FLOOR / 4)
+        Graphics.draw_text(game, "You won!!!" ,  22, WHITE, WIDTH / 2, GAME_FLOOR / 2)
+        Graphics.draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, GAME_FLOOR * 3 / 4)
         pygame.display.flip()
         Graphics.wait_for_key(game)
         
@@ -77,3 +77,22 @@ class Graphics:
             y = FIRST_LIFE_ICON_Y_POSITION
             rect.topleft = (x,y)
             game.screen.blit(life_icon, rect)
+
+    @staticmethod
+    def draw_console(game):
+        y = HEIGHT - CONSOLE_HEIGHT
+        pygame.draw.line(game.screen, CONSOLE_BORDER_LINE_COLOR, (0,y), (WIDTH,y), CONSOLE_BORDER_LINE_WIDTH)
+        Graphics.draw_timer(game)
+
+
+    @staticmethod
+    def draw_timer(game):
+        top = HEIGHT - TIMER_HEIGHT
+        total_level_time = game.level_end_time - game.level_start_time
+        current_level_time = game.level_end_time - pygame.time.get_ticks()
+        fill_ratio =  current_level_time/total_level_time
+        width = WIDTH * fill_ratio
+        left = WIDTH - width
+        time_left_rect = pygame.Rect(left, top, width, TIMER_HEIGHT) 
+        pygame.draw.rect(game.screen, TIMER_COLOR, time_left_rect) 
+        

@@ -14,7 +14,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": 4 * WIDTH /5 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
 
@@ -31,7 +31,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": 4 * WIDTH /5 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
             {
@@ -64,7 +64,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": WIDTH /2 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
             {
@@ -112,7 +112,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": 4 * WIDTH /5 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
             {
@@ -160,7 +160,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": 4 * WIDTH /5 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
             {
@@ -208,7 +208,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": 4 * WIDTH /5 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
             {
@@ -256,7 +256,7 @@ LEVELS = [
                     ],
             "player":{ 
                         "x": 4 * WIDTH /5 ,
-                        "y": HEIGHT,
+                        "y": GAME_FLOOR,
                      },
             },
         ]

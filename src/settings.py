@@ -8,6 +8,25 @@ TITLE = "Bubble Trouble in pygame"
 #TITLE_SCREEN_INSTRUCTIONS = "Figure it out"
 TITLE_SCREEN_INSTRUCTIONS ="Arrows to move, Space to fire harpoon"
 
+# define colors. Used for development
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (173,216,230)
+YELLOW = (238,238, 238)
+BG_COLOR = BLACK
+CONSOLE_HEIGHT = 40
+CONSOLE_BORDER_LINE_WIDTH = 5
+CONSOLE_BORDER_LINE_COLOR = RED
+
+TIMER_HEIGHT =CONSOLE_HEIGHT
+TIMER_WIDTH = WIDTH
+TIMER_COLOR = RED
+
+# This is where the bottom of the actual game is
+GAME_FLOOR = HEIGHT - CONSOLE_HEIGHT
+
 PLAYER_WIDTH = 20
 PLAYER_HEIGHT = 40
 PLAYER_SPEED = 3
@@ -31,14 +50,6 @@ BUBBLE_HORIZONTAL_SPEED = 1
 # had mass. This is a quick workaround.
 BUBBLE_HARPOON_SPEED_BOOST = -4
 
-# define colors. Used for development
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (173,216,230)
-YELLOW = (238,238, 238)
-BG_COLOR = BLACK
 
 
 
