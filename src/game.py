@@ -1,11 +1,11 @@
-# Pygame template - skeleton for a new pygame project
+# pygame template - skeleton for a new pygame project
 import sys
 import pygame
 from settings import *
 from player import Player
 from bubble import Bubble
 from levels import LEVELS, NO_OF_LEVELS
-from screen import *
+from graphics import Graphics
 
 class Game:
     def __init__(self):
@@ -37,7 +37,7 @@ class Game:
         # Need to turn off the ability to fire harpoons while level screen is showing
         temp = self.player.max_harpoons
         self.player.max_harpoons = 0
-        show_level_screen(game, level)
+        Graphics.show_level_screen(game, level)
         self.player.max_harpoons = temp
         # Make sure any moves made "during" loading screen aren't lurking in
         # the event queue
@@ -82,7 +82,7 @@ class Game:
         # draw stuff
         self.screen.fill(BG_COLOR)
         self.all_sprites.draw(self.screen)
-        draw_lives(game)
+        Graphics.draw_lives(game)
         # after drawing everything, flip the display
         pygame.display.flip()
 
@@ -128,10 +128,10 @@ class Game:
 
     def died_animation(self):
         pygame.time.wait(int(AFTER_DEATH_PAUSE * 1000))
-        show_go_screen(game)
+        Graphics.show_go_screen(game)
     
     def winner(self):
-        show_winner_screen(game)
+        Graphics.show_winner_screen(game)
         for sprite in self.all_sprites:
             sprite.kill()
         self.playing = False
@@ -149,7 +149,7 @@ level = 0
 if len(sys.argv)==2: # first entry in sys.argv is script itself...
      level = int(sys.argv[1])
 
-show_start_screen(game)
+Graphics.show_start_screen(game)
 while game.running:
     game.new(level)
 
