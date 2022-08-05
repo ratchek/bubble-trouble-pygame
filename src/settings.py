@@ -3,10 +3,10 @@ import pygame
 WIDTH = 720
 HEIGHT = 480
 FPS = 60
-#TITLE = "Bubble Trouble"
-TITLE = "A GAME"
-TITLE_SCREEN_INSTRUCTIONS = "Figure it out"
-#TITLE_SCREEN_INSTRUCTIONS ="Arrows to move, Space to fire harpoon"
+TITLE = "Bubble Trouble in pygame"
+#TITLE = "A GAME"
+#TITLE_SCREEN_INSTRUCTIONS = "Figure it out"
+TITLE_SCREEN_INSTRUCTIONS ="Arrows to move, Space to fire harpoon"
 
 PLAYER_WIDTH = 20
 PLAYER_HEIGHT = 40
