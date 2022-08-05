@@ -41,7 +41,8 @@ LEVELS = [
                         "y": 160, 
                         "stage": 3,
                         "color": GREEN,
-                        "speed_x": 0, 
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED*2,
+
                         "speed_y": 0,
                         },
                         {
@@ -118,6 +119,54 @@ LEVELS = [
             "bubbles":[
                         {
                         "x": WIDTH/5, 
+                        "y": 160, 
+                        "stage": 2,
+                        "color": BLUE,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 1*(10 + BUBBLE_SIZES[2]), 
+                        "y": 180, 
+                        "stage": 2,
+                        "color": YELLOW,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 2*(10 + BUBBLE_SIZES[2]), 
+                        "y": 200, 
+                        "stage": 2,
+                        "color": BLUE,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 3*(10 + BUBBLE_SIZES[2]), 
+                        "y": 220, 
+                        "stage": 2,
+                        "color": YELLOW,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 4*( 10 + BUBBLE_SIZES[2]), 
+                        "y": 240, 
+                        "stage": 2,
+                        "color": BLUE,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                    ],
+            "player":{ 
+                        "x": 4 * WIDTH /5 ,
+                        "y": HEIGHT,
+                     },
+            },
+            {
+            "bubbles":[
+                        {
+                        "x": WIDTH/5, 
                         "y": 60, 
                         "stage": 2,
                         "color": BLUE,
@@ -151,6 +200,54 @@ LEVELS = [
                         {
                         "x": WIDTH/5 + 4*( 10 + BUBBLE_SIZES[2]), 
                         "y": 60, 
+                        "stage": 2,
+                        "color": BLUE,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                    ],
+            "player":{ 
+                        "x": 4 * WIDTH /5 ,
+                        "y": HEIGHT,
+                     },
+            },
+            {
+            "bubbles":[
+                        {
+                        "x": WIDTH/5, 
+                        "y": 240, 
+                        "stage": 2,
+                        "color": BLUE,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 1*(10 + BUBBLE_SIZES[2]), 
+                        "y": 220, 
+                        "stage": 2,
+                        "color": YELLOW,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 2*(10 + BUBBLE_SIZES[2]), 
+                        "y": 200, 
+                        "stage": 2,
+                        "color": BLUE,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 3*(10 + BUBBLE_SIZES[2]), 
+                        "y": 180, 
+                        "stage": 2,
+                        "color": YELLOW,
+                        "speed_x": BUBBLE_HORIZONTAL_SPEED, 
+                        "speed_y": 0,
+                        },
+                        {
+                        "x": WIDTH/5 + 4*( 10 + BUBBLE_SIZES[2]), 
+                        "y": 160, 
                         "stage": 2,
                         "color": BLUE,
                         "speed_x": BUBBLE_HORIZONTAL_SPEED, 
