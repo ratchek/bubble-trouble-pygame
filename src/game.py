@@ -35,12 +35,14 @@ class Game:
 
     def load_level(self, level):
         # Need to turn off the ability to fire harpoons while level screen is showing
-        temp = player.max_harpoons
-`       player.max_harpoons = 0
+        temp = self.player.max_harpoons
+        self.player.max_harpoons = 0
         show_level_screen(game, level)
-`       player.max_harpoons = temp
+        self.player.max_harpoons = temp
+        # Make sure any moves made "during" loading screen aren't lurking in
+        # the event queue
+        pygame.event.clear()
         for b in LEVELS[level]["bubbles"]:
-            print(b)
             bubble = Bubble(**b)
             self.bubbles.add(bubble)
             self.all_sprites.add(bubble)
@@ -138,6 +140,8 @@ class Game:
         pygame.time.wait(int(AFTER_DEATH_PAUSE * 1000))
         for bubble in self.bubbles:
             bubble.kill()
+        for harpoon in self.harpoons:
+            harpoon.kill()
         self.load_level(self.current_level)
 
 game = Game()
