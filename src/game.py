@@ -105,6 +105,9 @@ class Game:
         if not self.bubbles:
             self.score += 100
             pygame.time.wait(int(AFTER_LVL_CLEARED_PAUSE * 1000))
+            time_bonus = (self.level_end_time - pygame.time.get_ticks()) / 1000
+            self.score += int(time_bonus)
+            print("Added {} to score".format(int(time_bonus)))
             self.current_level += 1
             if self.current_level >= NO_OF_LEVELS:
                 self.winner()
