@@ -16,6 +16,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
 
             {
@@ -33,6 +34,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
             {
             "bubbles":[
@@ -66,6 +68,7 @@ LEVELS = [
                         "x": WIDTH /2 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
             {
             "bubbles":[
@@ -114,6 +117,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
             {
             "bubbles":[
@@ -162,6 +166,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
             {
             "bubbles":[
@@ -210,6 +215,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
             {
             "bubbles":[
@@ -258,6 +264,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
+            "time": 120,
             },
         ]
 

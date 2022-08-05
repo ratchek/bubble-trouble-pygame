@@ -39,7 +39,7 @@ class Game:
         self.player.max_harpoons = 0
         Graphics.show_level_screen(game, level)
         self.player.max_harpoons = temp
-        # Make sure any moves made "during" loading screen aren't lurking in
+        # Make sure any moves made during loading screen aren't lurking in
         # the event queue
         pygame.event.clear()
         for b in LEVELS[level]["bubbles"]:
@@ -50,8 +50,7 @@ class Game:
         player_y_coords  = LEVELS[level]["player"]["y"]
         self.player.rect.midbottom = (player_x_coords, player_y_coords)
         self.level_start_time = pygame.time.get_ticks()
-        temp_time = 10
-        self.level_end_time = self.level_start_time + (temp_time * 1000)
+        self.level_end_time = self.level_start_time + (LEVELS[level]["time"] * 1000)
  
     def run(self):
         # game loop
@@ -105,7 +104,7 @@ class Game:
         if not self.bubbles:
             self.score += 100
             pygame.time.wait(int(AFTER_LVL_CLEARED_PAUSE * 1000))
-            time_bonus = (self.level_end_time - pygame.time.get_ticks()) / 1000
+            time_bonus = (self.level_end_time - pygame.time.get_ticks()) / 100
             self.score += int(time_bonus)
             print("Added {} to score".format(int(time_bonus)))
             self.current_level += 1
