@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from audio import sounds
 
 class Harpoon(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -13,6 +14,10 @@ class Harpoon(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midtop = (self.x, self.end_y)
         self.speed = HARPOON_SPEED
+        # Each harpoon gets their own channel so that
+        # you can kill each one individually
+        self.sound_channel = pygame.mixer.find_channel()
+        self.sound_channel.play(sounds["shoot_harpoon"] )
 
     def update(self):
         self.end_y = self.end_y - self.speed
@@ -23,3 +28,8 @@ class Harpoon(pygame.sprite.Sprite):
         # kill if it moves off the top of the screen
         if self.end_y < 0:
             self.kill()
+
+    def kill(self):
+        if self.sound_channel:
+            self.sound_channel.stop()
+        super().kill()

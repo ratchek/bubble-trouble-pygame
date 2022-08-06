@@ -8,6 +8,15 @@ TITLE = "Bubble Trouble in pygame"
 #TITLE_SCREEN_INSTRUCTIONS = "Figure it out"
 TITLE_SCREEN_INSTRUCTIONS ="Arrows to move, Space to fire harpoon"
 
+AUDIO_PATH = "../audio/"
+AUDIO_EXTENSION = ".ogg"
+SOUND_NAMES = ["shoot_harpoon","bubble_pop", "bubble_pop2", "bubble_split", "ingame_start_level", "ingame_dead", "ingame_time_out", "level_won", "game_won", ]
+
+IMAGE_PATH = "../img/"
+# The extension is added in the program because the same name
+# is used for both the image and the json
+SPRITE_SHEET_FILE_NAME = "sprite_sheet"
+
 # define colors. Used for development
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -61,4 +70,4 @@ LEVEL_SCREEN_PAUSE = 1
 # How long to wait after death. In seconds
 AFTER_DEATH_PAUSE = 1
 # How long to wait after level cleared. In seconds
-AFTER_LVL_CLEARED_PAUSE = 0.5
+AFTER_LVL_CLEARED_PAUSE = 2 

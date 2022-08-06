@@ -36,6 +36,7 @@ class Graphics:
         game.screen.fill(BG_COLOR)
         Graphics.draw_text(game, "CONGRATULATIONS!" , 48, WHITE, WIDTH / 2, GAME_FLOOR / 4)
         Graphics.draw_text(game, "You won!!!" ,  22, WHITE, WIDTH / 2, GAME_FLOOR / 2)
+        Graphics.draw_text(game, "Your score was: {}".format(game.score) ,  22, WHITE, WIDTH / 2, GAME_FLOOR / 2 + 40)
         Graphics.draw_text(game, "Press a key to play again", 22, WHITE, WIDTH / 2, GAME_FLOOR * 3 / 4)
         pygame.display.flip()
         Graphics.wait_for_key(game)

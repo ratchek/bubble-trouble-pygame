@@ -1,17 +1,18 @@
 # pygame template - skeleton for a new pygame project
 import sys
 import pygame
+import random
 from settings import *
 from player import Player
 from bubble import Bubble
 from levels import LEVELS, NO_OF_LEVELS
 from graphics import Graphics
+from audio import sounds, bubble_pop_sounds
 
 class Game:
     def __init__(self):
         # initialize game window, mixer, clock, etc
         pygame.init()
-        pygame.mixer.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption(TITLE)
         self.clock = pygame.time.Clock()
@@ -51,6 +52,7 @@ class Game:
         self.player.rect.midbottom = (player_x_coords, player_y_coords)
         self.level_start_time = pygame.time.get_ticks()
         self.level_end_time = self.level_start_time + (LEVELS[level]["time"] * 1000)
+        sounds["ingame_start_level"].play()
  
     def run(self):
         # game loop
@@ -100,9 +102,13 @@ class Game:
                     bubble_two = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x * -1, BUBBLE_HARPOON_SPEED_BOOST)
                     self.all_sprites.add(bubble_one, bubble_two)
                     self.bubbles.add(bubble_one, bubble_two)
+                    sounds["bubble_split"].play()
+                else:
+                    random.choice(bubble_pop_sounds).play()
         # If you killed all the bubbles
         if not self.bubbles:
             self.score += 100
+            sounds["level_won"].play()
             pygame.time.wait(int(AFTER_LVL_CLEARED_PAUSE * 1000))
             time_bonus = (self.level_end_time - pygame.time.get_ticks()) / 100
             self.score += int(time_bonus)
@@ -116,6 +122,8 @@ class Game:
         # did time run out?
         end_of_time = pygame.time.get_ticks() >= self.level_end_time 
         hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
+        if end_of_time: sounds["ingame_time_out"].play()
+        if hits: sounds["ingame_dead"].play()
         if hits or end_of_time:
             self.player.lives -= 1
             if self.player.lives <= 0:
@@ -139,6 +147,7 @@ class Game:
         Graphics.show_go_screen(game)
     
     def winner(self):
+        sounds["game_won"].play()
         Graphics.show_winner_screen(game)
         for sprite in self.all_sprites:
             sprite.kill()

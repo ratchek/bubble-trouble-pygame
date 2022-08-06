@@ -16,7 +16,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
-            "time": 120,
+            "time": 20,
             },
 
             {
@@ -34,7 +34,7 @@ LEVELS = [
                         "x": 4 * WIDTH /5 ,
                         "y": GAME_FLOOR,
                      },
-            "time": 120,
+            "time": 30,
             },
             {
             "bubbles":[
@@ -268,4 +268,5 @@ LEVELS = [
             },
         ]
 
-NO_OF_LEVELS = len(LEVELS)
+# NO_OF_LEVELS = len(LEVELS)
+NO_OF_LEVELS =2 
