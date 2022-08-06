@@ -144,6 +144,7 @@ class Game:
 
     def died_animation(self):
         pygame.time.wait(int(AFTER_DEATH_PAUSE * 1000))
+        sounds["game_over"].play()
         Graphics.show_go_screen(game)
     
     def winner(self):

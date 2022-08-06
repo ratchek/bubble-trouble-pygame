@@ -10,7 +10,7 @@ TITLE_SCREEN_INSTRUCTIONS ="Arrows to move, Space to fire harpoon"
 
 AUDIO_PATH = "../audio/"
 AUDIO_EXTENSION = ".ogg"
-SOUND_NAMES = ["shoot_harpoon","bubble_pop", "bubble_pop2", "bubble_split", "ingame_start_level", "ingame_dead", "ingame_time_out", "level_won", "game_won", ]
+SOUND_NAMES = ["shoot_harpoon","bubble_pop", "bubble_pop2", "bubble_split", "ingame_start_level", "ingame_dead", "ingame_time_out", "level_won", "game_won", "game_over", ]
 
 IMAGE_PATH = "../img/"
 # The extension is added in the program because the same name
