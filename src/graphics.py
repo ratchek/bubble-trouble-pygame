@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-from sprites import Spritesheet
+from spritesheet import Spritesheet
 class Graphics:
     sprite_sheet = None
     @staticmethod

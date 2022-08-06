@@ -1,7 +1,7 @@
 import pygame
 from settings import *
 from audio import sounds
-from sprites import Spritesheet
+from spritesheet import Spritesheet
 
 class Harpoon(pygame.sprite.Sprite):
     def __init__(self, x, y):

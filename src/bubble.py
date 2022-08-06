@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-from sprites import Spritesheet
+from spritesheet import Spritesheet
 
 class Bubble (pygame.sprite.Sprite):
     # stage 0 bubbles are the smallest. 

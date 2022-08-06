@@ -1,7 +1,7 @@
 from settings import *
 import pygame
 from harpoon import Harpoon
-from sprites import Spritesheet
+from spritesheet import Spritesheet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
