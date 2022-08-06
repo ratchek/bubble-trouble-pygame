@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from sprites import Spritesheet
 
 class Bubble (pygame.sprite.Sprite):
     # stage 0 bubbles are the smallest. 
@@ -8,9 +9,11 @@ class Bubble (pygame.sprite.Sprite):
     def __init__(self, x, y, stage, color, speed_x, speed_y):
         super().__init__()
         self.stage = stage
-        self.image = pygame.Surface((BUBBLE_SIZES[stage], BUBBLE_SIZES[stage]))
+        sprite_sheet = Spritesheet()
+        self.image = sprite_sheet.get_image("bubble_"+ color, BUBBLE_SIZES[stage])
+        # self.image = pygame.Surface((BUBBLE_SIZES[stage], BUBBLE_SIZES[stage]))
         self.color = color
-        self.image.fill(color)
+        # self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.speed_x = speed_x

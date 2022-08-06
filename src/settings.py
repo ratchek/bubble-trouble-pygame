@@ -16,6 +16,32 @@ IMAGE_PATH = "../img/"
 # The extension is added in the program because the same name
 # is used for both the image and the json
 SPRITE_SHEET_FILE_NAME = "sprite_sheet"
+SPRITES_USED = [
+    "shots/single_spiral.png",
+    "bubbles/bubble_blue.png",
+    "bubbles/bubble_blue_pop.png",
+    "bubbles/bubble_green.png",
+    "bubbles/bubble_green_pop.png",
+    "bubbles/bubble_red.png",
+    "bubbles/bubble_red_pop.png",
+    "bubbles/bubble_orange.png",
+    "bubbles/bubble_orange_pop.png",
+    "bubbles/bubble_purple.png",
+    "bubbles/bubble_purple_pop.png",
+    "bubbles/bubble_yellow.png",
+    "bubbles/bubble_yellow_pop.png",
+    "bubbles/bubble_pop.png",
+    "bubbles/pop_bubble_1.png",
+    "bubbles/pop_bubble_2.png",
+    "bubbles/pop_bubble_3.png",
+    "char/idle.png",
+    "char/walk_1.png",
+    "char/walk_2.png",
+    "char/walk_3.png",
+    "char/walk_4.png",
+    "char/mouse_contour.png",
+    "items/elife.png"
+    ]
 
 # define colors. Used for development
 WHITE = (255, 255, 255)

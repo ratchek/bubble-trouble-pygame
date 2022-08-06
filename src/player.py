@@ -1,12 +1,15 @@
 from settings import *
 import pygame
 from harpoon import Harpoon
+from sprites import Spritesheet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
-        self.image.fill(RED)
+        #self.image = pygame.Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
+        #self.image.fill(RED)
+        sprite_sheet = Spritesheet()
+        self.image = sprite_sheet.get_image("idle", PLAYER_HEIGHT)
         self.rect = self.image.get_rect()
         self.rect.midbottom =  (WIDTH/2, GAME_FLOOR)
         self.speedx = 0

@@ -1,7 +1,8 @@
 import pygame
 from settings import *
-
+from sprites import Spritesheet
 class Graphics:
+    sprite_sheet = None
     @staticmethod
     def show_start_screen(game):
         # game splash/start screen
@@ -71,8 +72,11 @@ class Graphics:
     @staticmethod
     def draw_lives(game):
         for i in range(game.player.lives):
-            life_icon = pygame.Surface((LIFE_ICON_WIDTH, LIFE_ICON_HEIGHT))
-            life_icon.fill(RED)
+            # life_icon = pygame.Surface((LIFE_ICON_WIDTH, LIFE_ICON_HEIGHT))
+            # life_icon.fill(RED)
+            if Graphics.sprite_sheet is None:
+                Graphics.sprite_sheet = Spritesheet()
+            life_icon = Graphics.sprite_sheet.get_image("elife", LIFE_ICON_HEIGHT)
             rect = life_icon.get_rect()
             x = FIRST_LIFE_ICON_X_POSITION + (LIFE_ICON_WIDTH + LIFE_ICON_PADDING) * i
             y = FIRST_LIFE_ICON_Y_POSITION
