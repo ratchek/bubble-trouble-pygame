@@ -84,7 +84,7 @@ class Game:
 
     def draw(self):
         # draw stuff
-        self.screen.fill(BG_COLOR)
+        Graphics.draw_background(game)
         self.all_sprites.draw(self.screen)
         Graphics.draw_console(game)
         Graphics.draw_lives(game)

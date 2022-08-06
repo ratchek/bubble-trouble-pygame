@@ -1,8 +1,18 @@
 import pygame
 from settings import *
 from spritesheet import Spritesheet
+from os import path
 class Graphics:
     sprite_sheet = None
+    @staticmethod
+    def draw_background(game):
+        game.screen.fill(BG_COLOR)
+        background_dir = path.join( path.dirname(__file__), "../img/bg/")
+        background_img = path.join(background_dir, "lvl{}.jpg".format(game.current_level ))
+        background = pygame.image.load(background_img).convert()
+        background = pygame.transform.scale(background, (WIDTH, GAME_FLOOR))
+        background_rect = background.get_rect()
+        game.screen.blit(background, background_rect)
     @staticmethod
     def show_start_screen(game):
         # game splash/start screen

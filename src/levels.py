@@ -25,7 +25,7 @@ LEVELS = [
                         "x": WIDTH/5, 
                         "y": 60, 
                         "stage": 2,
-                        "color": "blue",
+                        "color": "orange",
                         "speed_x": BUBBLE_HORIZONTAL_SPEED, 
                         "speed_y": 0,
                         },
@@ -268,5 +268,4 @@ LEVELS = [
             },
         ]
 
-# NO_OF_LEVELS = len(LEVELS)
-NO_OF_LEVELS =2 
+NO_OF_LEVELS = len(LEVELS)
