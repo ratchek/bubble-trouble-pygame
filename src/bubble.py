@@ -11,14 +11,13 @@ class Bubble (pygame.sprite.Sprite):
         self.stage = stage
         sprite_sheet = Spritesheet()
         self.image = sprite_sheet.get_image("bubble_"+ color, BUBBLE_SIZES[stage])
-        # self.image = pygame.Surface((BUBBLE_SIZES[stage], BUBBLE_SIZES[stage]))
         self.color = color
-        # self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.speed_x = speed_x
         self.speed_y = speed_y
         self.gravity = BUBBLE_GRAVITY
+        self.mask = pygame.mask.from_surface(self.image)
     def update(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y

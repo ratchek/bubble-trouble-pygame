@@ -10,15 +10,13 @@ class Harpoon(pygame.sprite.Sprite):
         self.start_y = y + PLAYER_HEIGHT
         self.end_y = y
 
-        # self.image = pygame.Surface((HARPOON_WIDTH, self.start_y - self.end_y))
-        # self.image.fill(WHITE)
         self.sprite_sheet = Spritesheet()
         self.image = self.sprite_sheet.get_harpoon_image(self.start_y - self.end_y) 
 
         self.rect = self.image.get_rect()
         self.rect.midtop = (self.x, self.end_y)
         self.speed = HARPOON_SPEED
-        # Each harpoon gets their own channel so that
+        # Each harpoon sound gets their own channel so that
         # you can kill each one individually
         self.sound_channel = pygame.mixer.find_channel()
         self.sound_channel.play(sounds["shoot_harpoon"] )
@@ -26,10 +24,9 @@ class Harpoon(pygame.sprite.Sprite):
     def update(self):
         self.end_y = self.end_y - self.speed
         self.image = self.sprite_sheet.get_harpoon_image(self.start_y - self.end_y) 
-        # self.image = pygame.Surface((HARPOON_WIDTH, self.start_y - self.end_y))
-        # self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.midtop = (self.x, self.end_y)
+        self.mask = pygame.mask.from_surface(self.image)
         # kill if it moves off the top of the screen
         if self.end_y < 0:
             self.kill()

@@ -6,8 +6,6 @@ from spritesheet import Spritesheet
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        #self.image = pygame.Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
-        #self.image.fill(RED)
         sprite_sheet = Spritesheet()
         self.image = sprite_sheet.get_image("idle", PLAYER_HEIGHT)
         self.rect = self.image.get_rect()
@@ -31,4 +29,5 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
+        self.mask = pygame.mask.from_surface(self.image)
 

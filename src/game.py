@@ -96,6 +96,7 @@ class Game:
         hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, True, True)
         if hits:
             for bubble in hits:
+                print(hits)
                 self.score += 10
                 if bubble.stage > 0:
                     bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x, BUBBLE_HARPOON_SPEED_BOOST)
