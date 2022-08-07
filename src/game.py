@@ -93,10 +93,14 @@ class Game:
 
     def update(self):
         # all the updates
-        hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, True, True)
-        if hits:
+
+        # Check collisions with rectangles first, before performing the more
+        # computing intensive mask collisions
+        hits = None
+        rect_hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, False, False)
+        if rect_hits:
+            hits = pygame.sprite.groupcollide(self.bubbles, self.harpoons, True, True, pygame.sprite.collide_mask)
             for bubble in hits:
-                print(hits)
                 self.score += 10
                 if bubble.stage > 0:
                     bubble_one = Bubble(bubble.rect.x, bubble.rect.y, bubble.stage - 1, bubble.color, bubble.speed_x, BUBBLE_HARPOON_SPEED_BOOST)
@@ -106,6 +110,7 @@ class Game:
                     sounds["bubble_split"].play()
                 else:
                     random.choice(bubble_pop_sounds).play()
+
         # If you killed all the bubbles
         if not self.bubbles:
             self.score += 100
@@ -122,7 +127,12 @@ class Game:
 
         # did time run out?
         end_of_time = pygame.time.get_ticks() >= self.level_end_time 
-        hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
+        # Check collisions with rectangles first, before performing the more
+        # computing intensive mask collisions
+        hits = None
+        rect_hits = pygame.sprite.spritecollide(self.player, self.bubbles, False)
+        if rect_hits:
+            hits = pygame.sprite.spritecollide(self.player, self.bubbles, False, pygame.sprite.collide_mask)
         if end_of_time: sounds["ingame_time_out"].play()
         if hits: sounds["ingame_dead"].play()
         if hits or end_of_time:
