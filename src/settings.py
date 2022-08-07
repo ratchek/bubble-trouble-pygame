@@ -43,6 +43,8 @@ SPRITES_USED = [
     "items/elife.png"
     ]
 
+# in miliseconds
+TIME_PER_CHARACTER_ANIMATION_FRAME = 70
 # define colors. Used for development
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
