@@ -24,6 +24,10 @@ class Graphics:
         Graphics.wait_for_key(game)
 
     @staticmethod
+    def show_score(game):
+        Graphics.draw_text(game, str(game.score), 18, WHITE, WIDTH / 2, 10)
+
+    @staticmethod
     def show_go_screen(game):
         # game over/continue
         if not game.running:

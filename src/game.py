@@ -85,9 +85,10 @@ class Game:
     def draw(self):
         # draw stuff
         Graphics.draw_background(game)
+        Graphics.draw_lives(game)
+        Graphics.show_score(game)
         self.all_sprites.draw(self.screen)
         Graphics.draw_console(game)
-        Graphics.draw_lives(game)
         # after drawing everything, flip the display
         pygame.display.flip()
 
