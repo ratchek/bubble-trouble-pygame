@@ -117,6 +117,7 @@ class Game:
             sounds["level_won"].play()
             pygame.time.wait(int(AFTER_LVL_CLEARED_PAUSE * 1000))
             time_bonus = (self.level_end_time - pygame.time.get_ticks()) / 100
+            print("the time bonus is {} ".format(time_bonus))
             self.score += int(time_bonus)
             print("Added {} to score".format(int(time_bonus)))
             self.current_level += 1
@@ -160,6 +161,7 @@ class Game:
     
     def winner(self):
         sounds["game_won"].play()
+        self.score += 50 * self.player.lives
         Graphics.show_winner_screen(game)
         for sprite in self.all_sprites:
             sprite.kill()
