@@ -111,7 +111,8 @@ class Graphics:
         current_level_time = game.level_end_time - pygame.time.get_ticks()
         fill_ratio =  current_level_time/total_level_time
         width = WIDTH * fill_ratio
-        left = WIDTH - width
+        # The "+ 1" is so that you don't get a tiny black bar on the right of the timer
+        left = WIDTH - width + 1
         time_left_rect = pygame.Rect(left, top, width, TIMER_HEIGHT) 
         pygame.draw.rect(game.screen, TIMER_COLOR, time_left_rect) 
         
