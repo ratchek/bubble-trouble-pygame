@@ -6,3 +6,6 @@ __pycache__
 
 # Poetry files
 pyproject.toml
+
+# venv
+env
