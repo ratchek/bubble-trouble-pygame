@@ -17,6 +17,23 @@ IMAGE_PATH = "../img/"
 # is used for both the image and the json
 SPRITE_SHEET_FILE_NAME = "sprite_sheet"
 SPRITES_USED = [
+    "fire.png",
+    "idle.png",
+    "life.png",
+    "orb1.png",
+    "orb2.png",
+    "orb3.png",
+    "orb4.png",
+    "orb5.png",
+    "orb6.png",
+    "orb7.png",
+    "orb8.png",
+    "walk_1.png",
+    "walk_2.png",
+    "walk_3.png",
+    "walk_4.png",]
+
+"""
     "shots/single_spiral.png",
     "bubbles/bubble_blue.png",
     "bubbles/bubble_blue_pop.png",
@@ -42,7 +59,7 @@ SPRITES_USED = [
     "char/mouse_contour.png",
     "items/elife.png"
     ]
-
+"""
 # in miliseconds
 TIME_PER_CHARACTER_ANIMATION_FRAME = 70
 # define colors. Used for development

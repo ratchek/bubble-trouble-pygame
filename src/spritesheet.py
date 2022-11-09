@@ -15,30 +15,40 @@ class Spritesheet:
             sprite_sheet_data_path= path.join(img_dir, SPRITE_SHEET_FILE_NAME + ".json")
             with open (sprite_sheet_data_path) as file:
                 sprite_data = json.load(file)
-            sprite_data = sprite_data["textures"][0]["frames"]
+            sprite_data = sprite_data["frames"]
             Spritesheet.sprite_coords = {}
-            for sprite in sprite_data:
+            for key, sprite in sprite_data.items():
+                print(sprite)
+                name = key.split(".")[0]
+                print(name)
+                sprite_frame = sprite["frame"]
+                """
                 if sprite["f"] in SPRITES_USED:
                     # Since we're not using all that many sprites, we'll extract and use just the
                     # name. Without the grouping structure that's in place
                     name = sprite["f"].split("/")[-1].split(".")[0] 
-                    Spritesheet.sprite_coords[name] = (sprite["x"], sprite["y"], sprite["w"], sprite["h"],) 
+                """
+                Spritesheet.sprite_coords[name] = (sprite_frame["x"], sprite_frame["y"], sprite_frame["w"], sprite_frame["h"],) 
 
     def get_image(self, sprite_name, desired_height):
-        # grab an image out of a larger spritesheet
-        x, y, width, height = Spritesheet.sprite_coords[sprite_name] 
-        image = pygame.Surface((width, height))
-        image.set_colorkey(BLACK)
-        image.blit(Spritesheet.sprite_sheet, (0, 0), (x, y, width, height))
-        # scale to desired height, keeping aspect ratio
-        new_width = width * desired_height / height
-        scaled_image = pygame.transform.scale(image, (new_width, desired_height))
+        try:
+            # grab an image out of a larger spritesheet
+            x, y, width, height = Spritesheet.sprite_coords[sprite_name] 
+            image = pygame.Surface((width, height))
+            image.set_colorkey(BLACK)
+            image.blit(Spritesheet.sprite_sheet, (0, 0), (x, y, width, height))
+            # scale to desired height, keeping aspect ratio
+            new_width = width * desired_height / height
+            scaled_image = pygame.transform.scale(image, (new_width, desired_height))
+        except:
+            scaled_image = pygame.Surface((desired_height, desired_height))
+            pygame.draw.rect(scaled_image, RED, pygame.Rect(0,0,desired_height,desired_height))
         return scaled_image
 
     def get_harpoon_image(self, height):
         # This is a bit different, because when we increase height,
         # we don't want to increase width
-        x, y, width, full_height = Spritesheet.sprite_coords["single_spiral"]
+        x, y, width, full_height = Spritesheet.sprite_coords["fire"]
         image = pygame.Surface((width, height))
         image.set_colorkey(BLACK)
         image.blit(Spritesheet.sprite_sheet, (0, 0), (x, y, width, height))
