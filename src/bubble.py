@@ -10,7 +10,7 @@ class Bubble (pygame.sprite.Sprite):
         super().__init__()
         self.stage = stage
         sprite_sheet = Spritesheet()
-        self.image = sprite_sheet.get_image("bubble_"+ color, BUBBLE_SIZES[stage])
+        self.image = sprite_sheet.get_image("orb"+ color, BUBBLE_SIZES[stage])
         self.color = color
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)

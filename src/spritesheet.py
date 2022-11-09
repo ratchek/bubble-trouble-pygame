@@ -18,9 +18,9 @@ class Spritesheet:
             sprite_data = sprite_data["frames"]
             Spritesheet.sprite_coords = {}
             for key, sprite in sprite_data.items():
-                print(sprite)
+                #print(sprite)
                 name = key.split(".")[0]
-                print(name)
+                #print(name)
                 sprite_frame = sprite["frame"]
                 """
                 if sprite["f"] in SPRITES_USED:
@@ -31,18 +31,19 @@ class Spritesheet:
                 Spritesheet.sprite_coords[name] = (sprite_frame["x"], sprite_frame["y"], sprite_frame["w"], sprite_frame["h"],) 
 
     def get_image(self, sprite_name, desired_height):
-        try:
-            # grab an image out of a larger spritesheet
-            x, y, width, height = Spritesheet.sprite_coords[sprite_name] 
-            image = pygame.Surface((width, height))
-            image.set_colorkey(BLACK)
-            image.blit(Spritesheet.sprite_sheet, (0, 0), (x, y, width, height))
-            # scale to desired height, keeping aspect ratio
-            new_width = width * desired_height / height
-            scaled_image = pygame.transform.scale(image, (new_width, desired_height))
+        # grab an image out of a larger spritesheet
+        x, y, width, height = Spritesheet.sprite_coords[sprite_name] 
+        image = pygame.Surface((width, height))
+        image.set_colorkey(BLACK)
+        image.blit(Spritesheet.sprite_sheet, (0, 0), (x, y, width, height))
+        # scale to desired height, keeping aspect ratio
+        new_width = width * desired_height / height
+        scaled_image = pygame.transform.scale(image, (new_width, desired_height))
+        """
         except:
             scaled_image = pygame.Surface((desired_height, desired_height))
             pygame.draw.rect(scaled_image, RED, pygame.Rect(0,0,desired_height,desired_height))
+        """
         return scaled_image
 
     def get_harpoon_image(self, height):
