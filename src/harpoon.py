@@ -19,7 +19,7 @@ class Harpoon(pygame.sprite.Sprite):
         # Each harpoon sound gets their own channel so that
         # you can kill each one individually
         self.sound_channel = pygame.mixer.find_channel()
-        self.sound_channel.play(sounds["shoot_harpoon"] )
+        self.sound_channel.play(sounds["shoot_fire"] )
 
     def update(self):
         self.end_y = self.end_y - self.speed
